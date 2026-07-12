@@ -1,0 +1,261 @@
+<!--
+  Verantwortungsbereich: Frontend-Entwicklung und Gestaltung der Chat-Seite.
+
+  @author Nilüfer Civelek
+-->
+
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>ChatApp</title>
+
+    <link rel="stylesheet" href="/css/chat.css?v=2" />
+</head>
+
+<body>
+
+<div class="chat-page">
+
+    <!-- Linke Seite -->
+    <aside class="sidebar">
+
+        <!-- Eigenes Profil -->
+        <div class="profile-box">
+            <div class="avatar-frame">
+                <div
+                        class="avatar"
+                        id="currentUserAvatar"
+                        style="cursor: pointer;"
+                >
+                    U
+                </div>
+
+                <input
+                        type="file"
+                        id="avatarInput"
+                        accept="image/*"
+                        aria-label="Profilbild auswählen"
+                        style="display: none;"
+                />
+            </div>
+
+            <div class="profile-details">
+                <div class="name-status">
+                    <h3 id="currentUserName">User</h3>
+
+                    <select
+                            id="userStatusSelect"
+                            class="status-select"
+                            aria-label="Status auswählen"
+                    >
+                        <option value="Online">Online</option>
+                        <option value="Busy">Beschäftigt</option>
+                        <option value="Away">Abwesend</option>
+                        <option value="Offline">Als offline anzeigen</option>
+                    </select>
+                </div>
+
+                <input
+                        type="text"
+                        id="currentUserPersonalMsg"
+                        placeholder="&lt;Persönliche Nachricht eingeben&gt;"
+                        class="personal-msg-input"
+                        aria-label="Persönliche Nachricht"
+                />
+
+                <button
+                        type="button"
+                        id="changeAvatarBtn"
+                        style="background: transparent; border: none; font-size: 10px; color: #2b579a; text-decoration: underline; cursor: pointer; text-align: left; padding: 2px 0; display: block; margin-top: 4px;"
+                >
+                    Profilbild ändern
+                </button>
+            </div>
+        </div>
+
+        <!-- Kontakte -->
+        <div class="contacts-header">
+            <span>Kontakte</span>
+        </div>
+
+        <div id="contactsList" class="contacts-list">
+            <!-- Kontakte werden hier angezeigt -->
+        </div>
+
+        <!-- Gruppen -->
+        <div
+                class="contacts-header"
+                style="margin-top: 15px; display: flex; justify-content: space-between; align-items: center;"
+        >
+            <span>Gruppen</span>
+
+            <button
+                    id="createGroupBtn"
+                    style="background: none; border: none; color: #2b579a; font-weight: bold; cursor: pointer; font-size: 11px;"
+            >
+                + Erstellen
+            </button>
+        </div>
+
+        <div
+                id="groupsList"
+                class="contacts-list"
+                style="flex: 0 0 150px; min-height: 100px;"
+        >
+            <!-- Gruppen werden hier angezeigt -->
+        </div>
+
+        <button id="logoutButton" class="logout-button">
+            Abmelden
+        </button>
+    </aside>
+
+    <!-- Chat-Bereich -->
+    <main class="chat-container">
+
+        <!-- Oberer Bereich -->
+        <header class="chat-header">
+            <div class="avatar small" id="activeReceiverAvatar">
+                F
+            </div>
+
+            <div class="chat-header-info">
+                <h2 id="chatHeaderName">Freund</h2>
+                <p id="chatHeaderPersonalMsg" class="header-personal-msg"></p>
+            </div>
+
+            <span
+                    class="app-logo-header"
+                    style="margin-left: auto; font-family: 'Segoe UI', Tahoma, sans-serif; font-weight: 800; font-size: 18px; color: #1e395b;"
+            >
+                    ChatApp
+                </span>
+        </header>
+
+        <!-- Nachrichten -->
+        <div class="chat-main-section">
+
+            <div class="conversation-pane">
+                <section id="messageArea" class="message-area">
+                    <div class="system-message">
+                        <p>
+                            Alle Unterhaltungen werden aus Nostalgiegründen aufgezeichnet.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Nachricht senden -->
+                <form id="messageForm" class="message-form">
+                    <input
+                            type="text"
+                            id="messageInput"
+                            placeholder="Schreibe eine Nachricht..."
+                            autocomplete="off"
+                            aria-label="Nachricht eingeben"
+                    />
+
+                    <button type="submit">
+                        Senden
+                    </button>
+                </form>
+            </div>
+
+            <!-- Profilbilder rechts -->
+            <aside class="dp-panel">
+                <div class="dp-box buddy-dp">
+                    <div
+                            class="avatar-frame large"
+                            id="buddyLargeAvatar"
+                    >
+                        F
+                    </div>
+                </div>
+
+                <div class="dp-box self-dp">
+                    <div
+                            class="avatar-frame large"
+                            id="selfLargeAvatar"
+                    >
+                        U
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+
+    </main>
+
+</div>
+
+<!-- Neue Gruppe -->
+<div id="createGroupModal" class="generic-modal" style="display: none;">
+    <div class="generic-modal-content" style="width: 350px;">
+
+        <div class="generic-modal-header">
+            <h3>Neue Gruppe erstellen</h3>
+
+            <button
+                    id="closeGroupModalBtn"
+                    class="close-btn"
+                    aria-label="Fenster schließen"
+            >
+                &times;
+            </button>
+        </div>
+
+        <div
+                class="generic-modal-body"
+                style="align-items: stretch; gap: 12px; padding: 16px;"
+        >
+
+            <!-- Gruppenname -->
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+                <label
+                        for="newGroupNameInput"
+                        style="font-size: 12px; font-weight: bold; color: #1e395b;"
+                >
+                    Gruppenname:
+                </label>
+
+                <input
+                        type="text"
+                        id="newGroupNameInput"
+                        placeholder="Z. B. Freunde"
+                        style="padding: 6px; border: 1px solid #9fbce4; border-radius: 4px;"
+                />
+            </div>
+
+            <!-- Mitglieder -->
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+                <label
+                        style="font-size: 12px; font-weight: bold; color: #1e395b;"
+                >
+                    Mitglieder auswählen:
+                </label>
+
+                <div
+                        id="groupMembersChecklist"
+                        style="max-height: 150px; overflow-y: auto; background: white; border: 1px solid #9fbce4; border-radius: 4px; padding: 6px; display: flex; flex-direction: column; gap: 4px;"
+                >
+                    <!-- Kontakte werden hier ausgewählt -->
+                </div>
+            </div>
+
+            <button
+                    id="submitCreateGroupBtn"
+                    style="padding: 8px; border: 1px solid #005a7d; border-radius: 6px; background: linear-gradient(180deg, #009be3 0%, #0073b6 100%); color: white; font-weight: bold; cursor: pointer;"
+            >
+                Erstellen
+            </button>
+        </div>
+    </div>
+</div>
+
+<script src="/js/chat.js?v=2"></script>
+</body>
+
+</html>

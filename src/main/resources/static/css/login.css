@@ -1,0 +1,253 @@
+/**
+ * Verantwortungsbereich: Frontend-Entwicklung und Gestaltung der Login- und Registrierungsseite.
+ *
+ * @author Nilüfer Civelek
+ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(180deg, #e4eefc 0%, #cbdcf5 100%);
+    min-height: 100vh;
+}
+
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Loginfenster */
+
+.login-card {
+    width: 100%;
+    max-width: 380px;
+    background: #fdfdfd;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #a4c5f0;
+    box-shadow: 0 10px 30px rgba(126, 166, 218, 0.25);
+}
+
+/* Überschrift */
+
+.msn-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Logo */
+
+.msn-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 70px;
+    position: relative;
+    margin-bottom: 12px;
+    animation: bounce 3s infinite ease-in-out;
+}
+
+.buddy {
+    position: absolute;
+    width: 32px;
+    height: 45px;
+}
+
+.buddy::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    top: 0;
+    left: 8px;
+    box-shadow: inset -2px -2px rgba(0, 0, 0, 0.1);
+}
+
+.buddy::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 25px;
+    border-radius: 15px 15px 0 0;
+    bottom: 4px;
+    left: 1px;
+    box-shadow: inset -3px -3px rgba(0, 0, 0, 0.1);
+}
+
+.buddy.blue {
+    left: 12px;
+    z-index: 2;
+}
+
+.buddy.blue::before {
+    background: #0076a3;
+}
+
+.buddy.blue::after {
+    background: #028ec4;
+    transform: rotate(-3deg);
+}
+
+.buddy.green {
+    left: 32px;
+    top: 6px;
+    z-index: 1;
+    transform: scale(0.9);
+}
+
+.buddy.green::before {
+    background: #7ba203;
+}
+
+.buddy.green::after {
+    background: #9bd006;
+    transform: rotate(3deg);
+}
+
+.msn-header h1 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #2b579a;
+    text-shadow: 1px 1px 0 white;
+}
+
+.subtitle {
+    color: #4b6a93;
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+/* Eingabefeld */
+
+.input-group {
+    margin-bottom: 16px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: #435e80;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #adc4e0;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    background: #fbfdff;
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.input-group input:focus {
+    border-color: #0076a3;
+    background: #fff;
+    box-shadow: 0 0 4px rgba(2, 142, 196, 0.4);
+}
+
+/* Optionen */
+
+.checkbox-group {
+    margin-bottom: 20px;
+    padding-left: 2px;
+}
+
+.checkbox-group label {
+    display: block;
+    font-size: 12px;
+    color: #597394;
+    margin-bottom: 6px;
+    cursor: pointer;
+}
+
+.checkbox-group input {
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+/* Fehlermeldung red */
+
+.error-message {
+    color: #d0021b;
+    font-size: 12px;
+    margin-bottom: 12px;
+    min-height: 18px;
+    text-align: center;
+}
+
+/* Button */
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+button {
+    width: 130px;
+    padding: 8px 16px;
+    border: 1px solid #005a7d;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #009be3 0%, #0073b6 100%);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 90, 125, 0.2);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background: linear-gradient(180deg, #02abfb 0%, #0082cf 100%);
+    box-shadow: 0 2px 6px rgba(0, 90, 125, 0.3);
+}
+
+/* Wechsel zwischen Login und Registrierung */
+
+.toggle-text {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 12px;
+    color: #597394;
+    border-top: 1px dashed #d1e1f5;
+    padding-top: 16px;
+}
+
+.toggle-text a {
+    color: #0073b6;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.toggle-text a:hover {
+    text-decoration: underline;
+}
+
+/* Logo-Animation */
+
+@keyframes bounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+}

@@ -1,0 +1,88 @@
+<!--
+  Verantwortungsbereich: Frontend-Entwicklung der Login- und Registrierungsseite.
+
+  @author Nilüfer Civelek
+-->
+
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>ChatApp - Anmelden</title>
+
+    <link rel="stylesheet" href="/css/login.css?v=2" />
+</head>
+
+<body>
+
+<div class="login-page">
+
+    <!-- Login-Fenster -->
+    <div class="login-card">
+
+        <!-- Überschrift -->
+        <div class="app-header">
+            <h1>ChatApp</h1>
+        </div>
+
+        <p id="formSubtitle" class="subtitle">
+            Mit Net Passport anmelden
+        </p>
+
+        <!-- Login-Formular -->
+        <form id="loginForm">
+
+            <div class="input-group">
+                <label for="username">Anmeldeadresse:</label>
+                <input
+                        type="text"
+                        id="username"
+                        placeholder="name@hotmail.com"
+                        required
+                />
+            </div>
+
+            <div class="input-group">
+                <label for="password">Passwort:</label>
+                <input
+                        type="password"
+                        id="password"
+                        placeholder="Passwort"
+                        required
+                />
+            </div>
+
+            <!-- Fehlermeldung -->
+            <p id="errorMessage" class="error-message"></p>
+
+            <!-- Anmelden -->
+            <div class="btn-container">
+                <button type="submit" id="submitBtn">
+                    Anmelden
+                </button>
+            </div>
+
+            <!-- Wechsel zur Registrierung -->
+            <p class="toggle-text">
+                    <span id="toggleMsg">
+                        Kein Net Passport vorhanden?
+                    </span>
+
+                <a href="#" id="toggleLink">
+                    Registrieren
+                </a>
+            </p>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="/js/login.js?v=2"></script>
+</body>
+
+</html>
